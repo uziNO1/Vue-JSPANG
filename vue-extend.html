@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue-extend 扩展实力构造器</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+    <author></author>    
+    <script>
+        var authorUrl = Vue.extend({
+            template:"<p><a :href='authorUrl'>{{authorName}}</a></p>",
+            data:function(){
+                return{
+                    authorName:"Bing",
+                    authorUrl:"http://www.baidu.com"
+                }
+            }
+        })  
+        new authorUrl().$mount("author")
+    </script>
+</body>
+</html>

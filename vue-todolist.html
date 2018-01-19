@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/vue.min.js"></script>
+    <title>Document</title>
+    <style>
+        *{margin: 0px;padding: 0px;}
+        #todo{width: 800px;margin: 50px auto;}
+        .inputText{width: 300px;height: 40px;border:1px solid #ccc;border-radius: 3px;padding-left: 10px}
+        #todo ul li{width:450px;margin-left: 60px;line-height: 2;margin-top: 20px;list-style-type: none;padding: 5px;}
+        #todo ul li input{margin-right: 10px}
+        #todo ul li button{width: 50px;height: 35px;float:right;background-color: crimson;color: #fff;border:1px solid transparent;border-radius: 4px;}
+        .finish{
+            text-decoration: line-through;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="todo">
+        <input type="text"  class="inputText" v-model="items.content" @keyup="keyEnter($event)"   placeholder="请输入你要记录的内容">
+        <ul>
+            <li v-for="(item,index) in list" :key="index">
+                <input type="checkbox" @click="changeState(index)" :checked="item.finished">
+                <span :class="{'finish':item.finished}">{{item.content}}</span>
+                <button @click="removeList(index)">删除</button>
+            </li>
+            <li v-if="list.length === 0">暂无内容</li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el:"#todo",
+            data:{
+                items:{
+                    content:[],
+                    finished:false,
+                    deleted:false
+                },
+                list:[]
+            },
+            methods: {
+                keyEnter:function(ev){
+                    if(ev.keyCode == 13){
+                        this.list.push(this.items);
+                        this.items = {
+                            content:"",
+                            finished:false,
+                            deleted:false
+                        }
+                    }
+                },
+                changeState:function(index){
+                    var curState = this.list[index].finished;
+                    this.list[index].finished = !curState;
+                },
+                removeList:function(index){
+                    this.list.splice(index,1);
+                }
+            }
+        })
+    </script>
+</body>
+</html>
