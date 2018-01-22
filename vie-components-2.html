@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="js/vue.min.js"></script>
+    <title>component-2</title>
+</head>
+<body>
+    <h1>component-2</h1>
+    <hr>
+    <div id="app">
+      <panda v-bind:hear="message"></panda>
+    </div>
+ 
+    <script type="text/javascript">
+        var app=new Vue({
+            el:'#app',
+            data:{
+                message:"Shichuan"
+            },
+            components:{
+                "panda":{
+                    template:`<div style="color:red;">panda form {{hear}}</div>`,
+                    props: ["hear"]
+                }
+            }
+        })
+    </script>
+</body>
+</html>
