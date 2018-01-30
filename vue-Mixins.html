@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mixins</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+    <h1>Mixins option</h1>
+    <hr>
+    <div id="app">
+        <p>{{num}}</p>
+        <button @click="add">add</button>
+    </div>
+    <script>
+        var addContent = {
+            updated:function(){
+                console.log("数据发生了变化,变成了" + this.num)
+            }
+        }
+
+
+        new Vue({
+            el:"#app",
+            data:{
+                num:1
+            },
+            methods: {
+                add:function(){
+                    this.num ++ ;
+                }
+            },
+            updated:function(){
+                console.log("我是原生的updated") //他后
+            },
+            mixins: [addContent]  //他先
+        })
+    </script>
+</body>
+</html>

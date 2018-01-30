@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>watch option监控数据</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+    <h1>watch option</h1>
+    <hr>
+    <div id="app">
+        <p>今日的温度:{{windu}}</p>
+        <p>建议穿衣:{{chuanyi}}</p>
+        <button @click="zenggaowendu">增高温度</button>
+        <button @click="suojianwendu">缩减温度</button>
+    </div>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                windu:14,
+                chuanyi: "夹克长裙"
+            },
+            methods: {
+                zenggaowendu:function(){
+                    this.windu += 5;
+                },
+                suojianwendu:function(){
+                    this.windu -= 5;
+                }
+            },
+            watch: {
+                windu:function(newVal,oldVal){
+                    if(newVal >= 25){
+                        this.chuanyi = "T恤短袖"
+                    }else if(newVal < 26 && newVal > 0){
+                        this.chuanyi = "夹克长裙"
+                    }else{
+                        this.chuanyi = "棉衣羽绒服"
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
