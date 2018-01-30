@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Early Examples Demo</title>
+    <script src="../js/vue.min.js"></script>
+</head>
+<body>
+    <h1>Early Examples Demo</h1>
+    <hr>
+    <div id="app">
+        <jsbing>
+            <span slot="bokeUrl">{{jsBingData.bokeUrl}}</span>
+            <span slot="netName">{{jsBingData.netName}}</span>
+            <span slot="jineng">{{jsBingData.jineng}}</span>
+        </jsbing>
+    </div>
+    <template id="tep">
+        <div>
+            <p>博客地址:<slot name="bokeUrl"></slot></p>
+            <p>网名昵称:<slot name="netName"></slot></p>
+            <p>技术类型:<slot name="jineng"></slot></p>
+        </div>
+    </template>
+    <script>
+        var jsBing = {
+            template:"#tep"
+        }
+        var app = new Vue({
+            el:"#app",
+            data:{
+                jsBingData:{
+                    bokeUrl:"http://jsBing.com",
+                    netName:"jsBing",
+                    jineng:"web前端"
+                }
+            },
+            components: {
+                "jsbing":jsBing
+            }
+        })
+    </script>
+</body>
+</html>
